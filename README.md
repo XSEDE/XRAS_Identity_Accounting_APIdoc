@@ -6,6 +6,6 @@ For the identity service, example code for a non-XSEDE client is available
 in [Ruby](https://gist.github.com/speckins/dd7f96b77de043fe15264965de2310c8)
 and [PHP](https://gist.github.com/speckins/c87d4724fe0a2190894d8bfc9b8a6a53).
 
-XSEDE hosts live documentation for its instance of
+[XSEDE](https://www.xsede.org/) hosts live documentation for its instance of
 the [identity service](https://xras-identity-service.xsede.org/apidoc) and
 the [accounting service](https://xras-accounting-service.xsede.org/apidoc).
