@@ -5,16 +5,6 @@ import sqlalchemy
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from app.core.config import settings
-
-database = databases.Database(settings.SQLALCHEMY_DATABASE_URI)
-
-metadata = sqlalchemy.MetaData()
-
-engine = sqlalchemy.create_engine(
-    settings.SQLALCHEMY_DATABASE_URI)
-metadata.create_all(engine)
-
 router = APIRouter(
     prefix="/v1/dates/requests",
     tags=["dates"],
@@ -34,16 +24,6 @@ dates = [Date(request_number=1, request_begin_date="1994-06-05", request_end_dat
          Date(request_number=3, request_begin_date="1998-08-05", request_end_date="1999-08-05"),
          Date(request_number=4, request_begin_date="1997-05-03", request_end_date="1999-08-05"),
          Date(request_number=5, request_begin_date="2008-08-05", request_end_date="2009-08-05")]
-
-
-@router.on_event("startup")
-async def startup():
-    await database.connect()
-
-
-@router.on_event("shutdown")
-async def shutdown():
-    await database.disconnect()
 
 
 @router.get("/", response_model=List[Date])
