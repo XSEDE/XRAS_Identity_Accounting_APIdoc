@@ -1,17 +1,16 @@
 from typing import List, Union
 
-import databases
-import sqlalchemy
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+
+from app.dependencies import get_api_key, get_xa_requester
 
 router = APIRouter(
     prefix="/v1/dates/requests",
     tags=["dates"],
-    dependencies=[],
+    dependencies=[Depends(get_api_key), Depends(get_xa_requester)],
     responses={},
 )
-
 
 class Date(BaseModel):
     request_number: int

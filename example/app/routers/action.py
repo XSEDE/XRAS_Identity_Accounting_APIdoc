@@ -1,11 +1,13 @@
 from typing import List, Optional, Union
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
+
+from app.dependencies import get_api_key, get_xa_requester
 
 router = APIRouter(
     prefix="/action/api",
     tags=["actions"],
-    dependencies=[],
+    dependencies=[Depends(get_api_key), Depends(get_xa_requester)],
     responses={},
 )
 

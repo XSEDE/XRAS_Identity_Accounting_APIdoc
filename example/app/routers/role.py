@@ -1,9 +1,11 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
+
+from app.dependencies import get_api_key, get_xa_requester
 
 router = APIRouter(
     prefix="/v1/roles",
     tags=["role"],
-    dependencies=[],
+    dependencies=[Depends(get_api_key), Depends(get_xa_requester)],
     responses={},
 )
 
